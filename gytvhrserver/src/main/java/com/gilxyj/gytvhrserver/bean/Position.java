@@ -7,6 +7,9 @@ public class Position {
     private Long id;
     private String name;
     private Timestamp createDate;
+    private Integer enabled;
+
+
 
     public Position() {
     }
@@ -53,5 +56,13 @@ public class Position {
 
     public void setCreateDate(Timestamp createDate) {
         this.createDate = createDate;
+    }
+
+    public Integer getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Integer enabled) {
+        this.enabled = enabled;
     }
 }

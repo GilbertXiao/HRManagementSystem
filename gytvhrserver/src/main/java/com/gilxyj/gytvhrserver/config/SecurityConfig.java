@@ -86,7 +86,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 //登录请求处理接口
                 .loginProcessingUrl("/doLogin")
-                .usernameParameter("userId")
+                .usernameParameter("username")
                 .passwordParameter("password")
                 //登录成功后，要跳转的页面
 //                .successForwardUrl()

@@ -1,5 +1,7 @@
 package com.gilxyj.gytvhrserver.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.sql.Timestamp;
 
 
@@ -8,6 +10,8 @@ public class JobLevel {
     private String name;
     private String titleLevel;
     private Timestamp createDate;
+
+    private Integer enabled;
 
     @Override
     public boolean equals(Object o) {
@@ -57,11 +61,20 @@ public class JobLevel {
         this.titleLevel = titleLevel;
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public Timestamp getCreateDate() {
         return createDate;
     }
 
     public void setCreateDate(Timestamp createDate) {
         this.createDate = createDate;
+    }
+
+    public Integer getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Integer enabled) {
+        this.enabled = enabled;
     }
 }

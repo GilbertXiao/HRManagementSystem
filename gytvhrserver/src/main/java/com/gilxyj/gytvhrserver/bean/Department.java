@@ -14,6 +14,12 @@ public class Department {
     private boolean enabled;
     private boolean isParent;
 
+
+
+    //存储过程执行结果
+    private Integer result;
+    private List<Department> children = new ArrayList<>();
+
     public Department() {
     }
 
@@ -23,8 +29,12 @@ public class Department {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Department that = (Department) o;
 
@@ -36,9 +46,7 @@ public class Department {
         return name != null ? name.hashCode() : 0;
     }
 
-    //存储过程执行结果
-    private Integer result;
-    private List<Department> children = new ArrayList<>();
+
 
     public List<Department> getChildren() {
         return children;
