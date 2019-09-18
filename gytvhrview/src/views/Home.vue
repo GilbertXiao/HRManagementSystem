@@ -4,13 +4,13 @@
       <el-header class="home-header">
         <span class="home_title">微人事</span>
         <div style="display: flex;align-items: center;margin-right: 7px">
-         <!-- <el-badge style="margin-right: 30px" :is-dot="this.$store.state.nfDot">
+          <!--<el-badge style="margin-right: 30px" :is-dot="this.$store.state.nfDot">
             <i class="fa fa-bell-o" @click="goChat" style="cursor: pointer"></i>
           </el-badge>-->
           <el-dropdown @command="handleCommand">
   <span class="el-dropdown-link home_userinfo" style="display: flex;align-items: center">
     {{user.name}}
-    <i><img v-if="user.userface!=''" :src="user.userface"
+   <i><img v-if="user.userface!=''" :src="user.userface"
             style="width: 40px;height: 40px;margin-right: 5px;margin-left: 5px;border-radius: 40px"/></i>
   </span>
             <el-dropdown-menu slot="dropdown">
@@ -42,26 +42,26 @@
             </el-menu>
           </div>
         </el-aside>
-        <el-main>
-          <el-breadcrumb separator-class="el-icon-arrow-right" v-if="this.$router.currentRoute.path!='/home'">
-            <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item  v-for = "(item,index) in this.$route.matched" :key = "index" >{{item.name}}
-            </el-breadcrumb-item>
-          </el-breadcrumb>
-          <keep-alive>
-            <router-view v-if="this.$route.meta.keepAlive"></router-view>
-          </keep-alive>
-          <router-view v-if="!this.$route.meta.keepAlive"></router-view>
-        </el-main>
+          <el-main>
+            <el-breadcrumb separator-class="el-icon-arrow-right">
+              <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
+              <el-breadcrumb-item v-text="this.$router.currentRoute.name"></el-breadcrumb-item>
+            </el-breadcrumb>
+            <keep-alive>
+              <router-view v-if="this.$route.meta.keepAlive"></router-view>
+            </keep-alive>
+            <router-view v-if="!this.$route.meta.keepAlive"></router-view>
+          </el-main>
       </el-container>
     </el-container>
   </div>
 </template>
+
 <script>
   export default{
     mounted: function () {
 //      this.devMsg();
-     /* this.loadNF();*/
+   //   this.loadNF();
     },
     methods: {
       /*loadNF(){
@@ -75,8 +75,8 @@
           })
           _this.$store.commit('toggleNFDot', isDot);
         })
-      },
-      goChat(){
+      },*/
+      /*goChat(){
         this.$router.push({path: '/chat'});
       },*/
       devMsg(){
@@ -101,7 +101,7 @@
             type: 'warning'
           }).then(() => {
             _this.getRequest("/logout");
-            _this.$store.commit('logout');
+           /* _this.$store.commit('logout');*/
             _this.$router.replace({path: '/'});
           }).catch(() => {
             _this.$message({
@@ -114,13 +114,12 @@
     },
     data(){
       return {
-        isDot: false
+        isDot: false,
+	 user: JSON.parse(window.sessionStorage.getItem("user"))
       }
     },
     computed: {
-      user(){
-        return this.$store.state.user;
-      },
+      
       routes(){
         return this.$store.state.routes
       }

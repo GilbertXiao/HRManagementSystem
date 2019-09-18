@@ -5,7 +5,7 @@ import store from './store'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
-import {getRequest,postRequest,deleteRequest,putRequest,uploadFileRequest} from "./utils/api"
+import {getRequest, postRequest, deleteRequest, putRequest, uploadFileRequest, postKeyValueRequest} from "./utils/api"
 import {initMenu,isNotNullORBlank} from "./utils/utils";
 import 'font-awesome/css/font-awesome.min.css'
 
@@ -13,6 +13,7 @@ import 'font-awesome/css/font-awesome.min.css'
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 
+Vue.prototype.postKeyValueRequest=postKeyValueRequest;
 Vue.prototype.getRequest = getRequest;
 Vue.prototype.postRequest = postRequest;
 Vue.prototype.deleteRequest = deleteRequest;
@@ -20,28 +21,15 @@ Vue.prototype.putRequest = putRequest;
 Vue.prototype.uploadFileRequest = uploadFileRequest;
 Vue.prototype.isNotNullORBlank = isNotNullORBlank;
 
-router.beforeEach((to, from, next)=> {
-      if (to.name == 'Login') {
-        next();
+router.beforeEach((to, from, next) => {
+    if (to.path != '/' && !window.sessionStorage.getItem("user")) {
+        //要去的页面不是登录页，并且还没有登录
+        next("/");
         return;
-      }
-      var name = store.state.user.name;
-      initMenu(router, store);
-      next();
-      /*if (name == '未登录') {
-        if (to.meta.requireAuth || to.name == null) {
-          next({path: '/', query: {redirect: to.path}})
-        } else {
-          next();
-        }
-      } else {
-        initMenu(router, store);
-        if(to.path=='/chat')
-          store.commit("updateMsgList", []);
-        next();
-      }*/
     }
-)
+    initMenu(router, store);
+    next();
+})
 new Vue({
   router,
   store,

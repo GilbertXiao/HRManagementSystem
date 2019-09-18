@@ -16,11 +16,10 @@ export const initMenu = (router, store)=> {
     return;
   }
   getRequest("/config/sysmenu").then(resp=> {
-    if (resp && resp.status == 200) {
-      var fmtRoutes = formatRoutes(resp.data);
+    if (resp) {
+      let fmtRoutes = formatRoutes(resp);
       router.addRoutes(fmtRoutes);
       store.commit('initMenu', fmtRoutes);
-      store.dispatch('connect');
     }
   })
 }

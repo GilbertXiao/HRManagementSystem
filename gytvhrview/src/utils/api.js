@@ -6,15 +6,17 @@ axios.interceptors.request.use(config => {
   Message.error({message: '请求超时!'});
   // return Promise.resolve(err);
 })
-axios.interceptors.response.use(data => {
+
+axios.interceptors.response.use(data => {//{data:{status:200,msg"",obj:{}},status:200}
   if (data.status && data.status == 200 && data.data.status == 500) {
+    //业务逻辑错误
     Message.error({message: data.data.msg});
     return;
   }
   if (data.data.msg) {
     Message.success({message: data.data.msg});
   }
-  return data;
+  return data.data;
 }, err => {
   if (err.response.status == 504 || err.response.status == 404) {
     Message.error({message: '服务器被吃了⊙﹏⊙∥'});
@@ -32,7 +34,7 @@ axios.interceptors.response.use(data => {
   // return Promise.resolve(err);
 })
 let base = '';
-export const postRequest = (url, params) => {
+export const postKeyValueRequest = (url, params) => {
   return axios({
     method: 'post',
     url: `${base}${url}`,
@@ -46,6 +48,16 @@ export const postRequest = (url, params) => {
     }],
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  });
+}
+export const postRequest = (url, params) => {
+  return axios({
+    method: 'post',
+    url: `${base}${url}`,
+    data: params,
+    headers: {
+      'Content-Type': 'application/json'
     }
   });
 }
@@ -64,15 +76,8 @@ export const putRequest = (url, params) => {
     method: 'put',
     url: `${base}${url}`,
     data: params,
-    transformRequest: [function (data) {
-      let ret = ''
-      for (let it in data) {
-        ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
-      }
-      return ret
-    }],
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'application/json'
     }
   });
 }
