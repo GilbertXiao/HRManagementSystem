@@ -39,21 +39,7 @@ export const formatRoutes = (routes)=> {
     }
     let fmRouter = {
       path: path,
-      component(resolve){
-        if (component.startsWith("Home")) {
-          require(['../views/' + component + '.vue'], resolve)
-        } else if (component.startsWith("Emp")) {
-          require(['../views/emp/' + component + '.vue'], resolve)
-        } else if (component.startsWith("Per")) {
-          require(['../views/personnel/' + component + '.vue'], resolve)
-        } else if (component.startsWith("Sal")) {
-          require(['../views/salary/' + component + '.vue'], resolve)
-        } else if (component.startsWith("Sta")) {
-          require(['../views/statistics/' + component + '.vue'], resolve)
-        } else if (component.startsWith("Sys")) {
-          require(['../views/system/' + component + '.vue'], resolve)
-        }
-      },
+      component: ()=>import(`@/views/${component}.vue`),
       name: name,
       iconCls: iconCls,
       meta: meta,

@@ -18,19 +18,22 @@ axios.interceptors.response.use(data => {//{data:{status:200,msg"",obj:{}},statu
   }
   return data.data;
 }, err => {
-  if (err.response.status == 504 || err.response.status == 404) {
-    Message.error({message: '服务器被吃了⊙﹏⊙∥'});
-  } else if (err.response.status == 403) {
-    Message.error({message: '权限不足,请联系管理员!'});
-  } else if (err.response.status == 401) {
-    Message.error({message: err.response.data.msg});
-  } else {
-    if (err.response.data.msg) {
+  if(err&&err.response){
+    if (err.response.status == 504 || err.response.status == 404) {
+      Message.error({message: '服务器被吃了⊙﹏⊙∥'});
+    } else if (err.response.status == 403) {
+      Message.error({message: '权限不足,请联系管理员!'});
+    } else if (err.response.status == 401) {
       Message.error({message: err.response.data.msg});
-    }else{
-      Message.error({message: '未知错误!'});
+    } else {
+      if (err.response.data.msg) {
+        Message.error({message: err.response.data.msg});
+      }else{
+        Message.error({message: '未知错误!'});
+      }
     }
   }
+
   // return Promise.resolve(err);
 })
 let base = '';

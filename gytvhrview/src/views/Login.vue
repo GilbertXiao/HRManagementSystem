@@ -1,63 +1,87 @@
 <template>
-  <div style="display: flex;justify-content: center">
-    <el-card class="box-card" style="width: 450px;margin-top: 150px">
-      <div slot="header" class="clearfix">
-        <span>登录</span>
-      </div>
-      <div>
-        <table>
-          <tr>
-            <td>
-              <el-tag>用户名</el-tag>
-            </td>
-            <td>
-              <el-input size="mini" v-model="user.username" placeholder="请输入用户名"></el-input>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <el-tag>密码</el-tag>
-            </td>
-            <td>
-              <el-input size="mini" v-model="user.password" placeholder="请输入密码" @keydown.enter.native="doLogin"></el-input>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <el-button type="primary" @click="doLogin">登录</el-button>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </el-card>
-  </div>
+  <el-form :model="loginForm" :rules="rules" ref="loginForm" class="login-container" label-position="left"
+           label-width="0px" v-loading="loading">
+    <h3 class="login_title">系统登录</h3>
+    <el-form-item prop="username">
+      <el-input type="text" v-model="loginForm.username"
+                auto-complete="off" placeholder="账号"></el-input>
+    </el-form-item>
+    <el-form-item prop="password">
+      <el-input type="password" v-model="loginForm.password"
+                auto-complete="off" placeholder="密码"></el-input>
+    </el-form-item>
+    <el-checkbox class="login_remember" v-model="checked"
+                 label-position="left">记住密码</el-checkbox>
+    <el-form-item style="width: 100%">
+      <el-button type="primary" style="width: 100%" @click="submitClick">登录</el-button>
+    </el-form-item>
+  </el-form>
 </template>
-
 <script>
-
-  export default {
-    name: "Login",
-    data() {
+  export default{
+    data(){
       return {
-        user:{
-          username:'admin',
-          password:'123'
-        }
+        rules: {
+          username: [{required: true, message: '请输入用户名', trigger: 'blur'}],
+          password: [{required: true, message: '请输入密码', trigger: 'blur'}]
+        },
+        checked: true,
+        loginForm: {
+          username: 'admin',
+          password: '123'
+        },
+        loading: false
       }
     },
-    methods:{
-      doLogin() {
-        this.postKeyValueRequest("/doLogin", this.user).then(msg=>{
-          if (msg) {
-            window.sessionStorage.setItem("user",JSON.stringify(msg.obj))
-            this.$router.replace("/home");
+    methods: {
+      submitClick: function () {
+
+        var _this=this;
+        this.loading = true;
+        this.$refs.loginForm.validate((valid) => {
+          if(valid){
+            this.postKeyValueRequest('/doLogin', {
+              username: this.loginForm.username,
+              password: this.loginForm.password
+            }).then(resp=> {
+              _this.loading = false;
+              if (resp) {
+                _this.$store.commit('login', resp.obj);
+                var path = _this.$route.query.redirect;
+                _this.$router
+                        .replace({path: path == '/' || path === undefined ? '/home' : path});
+              }
+            });
+          }else{
+            _this.loading = false;
+            console.log('error submit!');
+            return false;
           }
-        });
+        })
+
+
       }
     }
   }
 </script>
-
-<style scoped>
-
+<style>
+  .login-container {
+    border-radius: 15px;
+    background-clip: padding-box;
+    margin: 180px auto;
+    width: 350px;
+    padding: 35px 35px 15px 35px;
+    background: #fff;
+    border: 1px solid #eaeaea;
+    box-shadow: 0 0 25px #cac6c6;
+  }
+  .login_title {
+    margin: 0px auto 40px auto;
+    text-align: center;
+    color: #505458;
+  }
+  .login_remember {
+    margin: 0px 0px 35px 0px;
+    text-align: left;
+  }
 </style>

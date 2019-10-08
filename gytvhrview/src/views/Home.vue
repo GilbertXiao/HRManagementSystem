@@ -22,13 +22,12 @@
         </div>
       </el-header>
       <el-container>
-        <el-aside width="180px" class="home-aside">
+        <el-aside style="width: 180px;overflow: hidden" class="home-aside">
           <div style="display: flex;justify-content: flex-start;width: 180px;text-align: left;">
             <el-menu style="background: #ececec;width: 180px;" unique-opened router>
               <template v-for="(item,index) in this.routes" v-if="!item.hidden">
                 <el-submenu :key="index" :index="index+''">
                   <template slot="title">
-                    <i :class="item.iconCls" style="color: #20a0ff;width: 14px;"></i>
                     <span slot="title">{{item.name}}</span>
                   </template>
                   <el-menu-item width="180px"
@@ -44,8 +43,9 @@
         </el-aside>
           <el-main>
             <el-breadcrumb separator-class="el-icon-arrow-right">
-              <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
-              <el-breadcrumb-item v-text="this.$router.currentRoute.name"></el-breadcrumb-item>
+              <el-breadcrumb-item>首页</el-breadcrumb-item>
+              <el-breadcrumb-item  v-for = "(item,index) in this.$route.matched" :key = "index" >{{item.name}}
+              </el-breadcrumb-item>
             </el-breadcrumb>
             <keep-alive>
               <router-view v-if="this.$route.meta.keepAlive"></router-view>
@@ -119,7 +119,7 @@
       }
     },
     computed: {
-      
+
       routes(){
         return this.$store.state.routes
       }

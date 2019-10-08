@@ -25,4 +25,10 @@ public interface DepartmentMapper {
 
     List<Department> getAllDepartment();
 
+
+
+
+
+
+
 }

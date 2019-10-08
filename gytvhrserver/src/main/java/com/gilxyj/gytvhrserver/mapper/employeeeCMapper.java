@@ -1,6 +1,10 @@
 package com.gilxyj.gytvhrserver.mapper;
+import org.apache.ibatis.annotations.Param;
+import java.util.Date;
 
 import com.gilxyj.gytvhrserver.bean.employeeeC;
+
+import java.util.List;
 
 public interface employeeeCMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +18,9 @@ public interface employeeeCMapper {
     int updateByPrimaryKeySelective(employeeeC record);
 
     int updateByPrimaryKey(employeeeC record);
+
+
+
+
+
 }
