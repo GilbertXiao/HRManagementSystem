@@ -36,7 +36,7 @@
     methods: {
       submitClick: function () {
 
-        var _this=this;
+        /*var _this=this;
         this.loading = true;
         this.$refs.loginForm.validate((valid) => {
           if(valid){
@@ -46,19 +46,35 @@
             }).then(resp=> {
               _this.loading = false;
               if (resp) {
-                _this.$store.commit('login', resp.obj);
-                var path = _this.$route.query.redirect;
-                _this.$router
-                        .replace({path: path == '/' || path === undefined ? '/home' : path});
+
+                _this.$router.push("/home");
               }
-            });
+            }).catch();
+          }
+        });*/
+        this.$refs.loginForm.validate((valid) => {
+          if(valid){
+            this.postKeyValueRequest("/doLogin",{
+              username: this.loginForm.username,
+              password: this.loginForm.password
+            }).then(data=>{
+              if(data){
+                /*  var jsonLength = this.getJsonLength(this.userWithRoles.roles);
+                  if(jsonLength>1){
+                     this.loginShow=false;
+                     this.roleShow=true;
+                     return;
+                  }*/
+                this.$store.commit('login', data.obj);
+                var path = this.$route.query.redirect;
+                this.$router.replace({path: path == '/' || path == undefined ? '/home' : path});
+              }
+            })
           }else{
-            _this.loading = false;
-            console.log('error submit!');
+            this.$message.error('请输入所有字段');
             return false;
           }
         })
-
 
       }
     }

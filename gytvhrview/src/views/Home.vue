@@ -115,7 +115,7 @@
     data(){
       return {
         isDot: false,
-	 user: JSON.parse(window.sessionStorage.getItem("user"))
+	    user: JSON.parse(window.localStorage.getItem("user"))
       }
     },
     computed: {

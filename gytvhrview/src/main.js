@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
-import store from './store'
+import router from "./router";
+
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import store from "./store";
 
 import {getRequest, postRequest, deleteRequest, putRequest, uploadFileRequest, postKeyValueRequest} from "./utils/api"
 import {initMenu,isNotNullORBlank} from "./utils/utils";
@@ -22,13 +23,23 @@ Vue.prototype.uploadFileRequest = uploadFileRequest;
 Vue.prototype.isNotNullORBlank = isNotNullORBlank;
 
 router.beforeEach((to, from, next) => {
-    if (to.path != '/' && !window.sessionStorage.getItem("user")) {
-        //要去的页面不是登录页，并且还没有登录
-        next("/");
+    if (to.name == 'Login') {
+        next();
         return;
     }
-    initMenu(router, store);
-    next();
+    var name = store.state.user.name;
+    if (name == '未登录') {
+        if (to.meta.requireAuth || to.name == null) {
+            next({path: '/', query: {redirect: to.path}})
+        } else {
+            next();
+        }
+    } else {
+        initMenu(router, store);
+        if(to.path=='/chat')
+            store.commit("updateMsgList", []);
+        next();
+    }
 })
 new Vue({
   router,

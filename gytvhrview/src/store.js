@@ -20,7 +20,7 @@ export default new Vuex.Store({
       state.routes = menus;
     },
     login(state, user){
-      state.user =  JSON.stringify(user);
+      state.user =  user;
       window.localStorage.setItem('user', JSON.stringify(user));
 
     }
