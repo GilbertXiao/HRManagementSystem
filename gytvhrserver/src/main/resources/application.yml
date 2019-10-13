@@ -17,3 +17,5 @@ spring:
       force-response: true
       force-request: true
       charset: UTF-8
+  profiles:
+    active: dev

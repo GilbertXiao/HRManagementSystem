@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gilxyj.gytvhrserver.bean.Hr;
 import com.gilxyj.gytvhrserver.bean.RespBean;
 import com.gilxyj.gytvhrserver.common.HrUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;

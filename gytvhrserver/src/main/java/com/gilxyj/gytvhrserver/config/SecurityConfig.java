@@ -43,6 +43,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     JsonAccessDeniedHandler jsonAccessDeniedHandler;
 
+    @Autowired
+    JsonLogoutSuccessHandler jsonLogoutSuccessHandler;
+
+    @Autowired
+    JsonAuthencationEntryPoint jsonAuthencationEntryPoint;
+
 
 
     @Override
@@ -95,8 +101,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //登录失败处理器
                 .failureHandler(jsonAuthenticationFailureHandler)
                 .permitAll()
+                .and().logout().logoutSuccessHandler(jsonLogoutSuccessHandler)
                 .and()
-                .csrf().disable().exceptionHandling().accessDeniedHandler(jsonAccessDeniedHandler);
+                .csrf().disable().exceptionHandling().authenticationEntryPoint(jsonAuthencationEntryPoint).accessDeniedHandler(jsonAccessDeniedHandler)
+                ;
 
     }
 
