@@ -34,7 +34,7 @@ export const formatRoutes = (routes)=> {
       iconCls,
       children
     } = router;
-    if (children && children instanceof Array) {
+    if (children && children instanceof Array && children.length>0) {
       children = formatRoutes(children);
     }
     let fmRouter = {

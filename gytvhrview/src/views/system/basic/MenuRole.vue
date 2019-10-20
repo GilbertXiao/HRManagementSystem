@@ -1,5 +1,5 @@
 <template>
   <div>
-    职位管理!
+    权限组
   </div>
 </template>

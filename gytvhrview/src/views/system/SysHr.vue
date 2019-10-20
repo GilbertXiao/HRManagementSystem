@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-top: 10px" v-loading="fullloading">
-
+  <div  >
+       操作员管理
   </div>
 </template>

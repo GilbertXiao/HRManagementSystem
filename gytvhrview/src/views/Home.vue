@@ -101,7 +101,7 @@
             type: 'warning'
           }).then(() => {
             _this.getRequest("/logout");
-           /* _this.$store.commit('logout');*/
+            _this.$store.commit('logout');
             _this.$router.replace({path: '/'});
           }).catch(() => {
             _this.$message({

@@ -1,5 +1,7 @@
 package com.gilxyj.gytvhrserver.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.sql.Timestamp;
 
 
@@ -50,6 +52,7 @@ public class Position {
         this.name = name;
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public Timestamp getCreateDate() {
         return createDate;
     }
