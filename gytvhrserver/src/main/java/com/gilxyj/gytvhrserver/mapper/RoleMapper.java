@@ -2,6 +2,8 @@ package com.gilxyj.gytvhrserver.mapper;
 
 import com.gilxyj.gytvhrserver.bean.Role;
 
+import java.util.List;
+
 public interface RoleMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,7 @@ public interface RoleMapper {
     int updateByPrimaryKeySelective(Role record);
 
     int updateByPrimaryKey(Role record);
+
+    List<Role> getAllRoles();
+
 }

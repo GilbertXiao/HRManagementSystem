@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -50,7 +51,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     JsonAuthencationEntryPoint jsonAuthencationEntryPoint;
 
 
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
@@ -69,15 +69,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/login","/index.html","/static/**");
+        web.ignoring().antMatchers("/login", "/index.html", "/static/**");
     }
-
 
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-               .anyRequest().authenticated()//所有的请求必须认证后才能通过
+                //.anyRequest().authenticated()//所有的请求必须认证后才能通过
                 .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
                     @Override
                     public <O extends FilterSecurityInterceptor> O postProcess(O o) {
@@ -89,7 +88,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 //登录页面，就是用户未登录时自动跳转到的页面
-                .loginPage("/login")
+                //.loginPage("/login")
                 //登录请求处理接口
                 .loginProcessingUrl("/doLogin")
                 .usernameParameter("username")
@@ -104,7 +103,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().logout().logoutSuccessHandler(jsonLogoutSuccessHandler)
                 .and()
                 .csrf().disable().exceptionHandling().authenticationEntryPoint(jsonAuthencationEntryPoint).accessDeniedHandler(jsonAccessDeniedHandler)
-                ;
+        ;
 
     }
 

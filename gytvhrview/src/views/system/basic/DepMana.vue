@@ -13,6 +13,7 @@
                      :filter-node-method="filterNode"
                      ref="tree2" ></el-tree>
         </div>
+
         <div>
             <el-dialog
                     title="新增部门"

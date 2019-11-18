@@ -1,6 +1,7 @@
 package com.gilxyj.gytvhrserver.mapper;
 
 import com.gilxyj.gytvhrserver.bean.MenuRole;
+import org.apache.ibatis.annotations.Param;
 
 public interface MenuRoleMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +15,14 @@ public interface MenuRoleMapper {
     int updateByPrimaryKeySelective(MenuRole record);
 
     int updateByPrimaryKey(MenuRole record);
+
+    Integer insertRidAndMids(@Param("rid") Integer rid,@Param("mids") Integer[] mids);
+
+    int deleteByRid(@Param("rid")Integer rid);
+
+
+
+
+
+
 }

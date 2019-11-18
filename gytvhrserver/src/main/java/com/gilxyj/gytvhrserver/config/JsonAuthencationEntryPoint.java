@@ -15,7 +15,7 @@ import java.io.PrintWriter;
 
 /**
  * @program: gytvhrserver
- * @description:
+ * @description: 解决未登录的时候访问接口,带来的默认重定向问题
  * @author: GilbertXiao
  * @create: 2019-10-10 23:31
  **/
@@ -24,6 +24,7 @@ public class JsonAuthencationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         response.setContentType("application/json;charset=UTF-8");
+        response.setStatus(401);
         PrintWriter writer = response.getWriter();
         RespBean respBean = RespBean.error("访问失败");
         if (authException instanceof InsufficientAuthenticationException) {

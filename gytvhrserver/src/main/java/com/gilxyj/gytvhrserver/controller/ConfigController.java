@@ -6,6 +6,8 @@ import com.gilxyj.gytvhrserver.bean.Menu;
 import com.gilxyj.gytvhrserver.common.HrUtils;
 import com.gilxyj.gytvhrserver.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +26,7 @@ public class ConfigController {
 
     @GetMapping("/sysmenu")
     public List<Menu> sysmenu() {
-        return menuService.getMenusByHrId();
+        return menuService.getMenusByHrId(HrUtils.getCurrentHr().getId());
     }
 
     @GetMapping("/hr")

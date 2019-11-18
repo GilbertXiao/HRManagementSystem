@@ -14,8 +14,8 @@ import java.util.List;
  * @author: GilbertXiao
  * @create: 2019-09-15 15:26
  **/
-@RestController
 @RequestMapping("/system/basic/joblevel")
+@RestController
 public class JobLevelController {
 
     @Autowired
