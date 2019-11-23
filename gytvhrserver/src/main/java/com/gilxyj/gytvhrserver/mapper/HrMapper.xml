@@ -93,10 +93,13 @@
     <delete id="deleteHr" parameterType="Long">
         DELETE FROM hr WHERE id=#{hrId}
     </delete>
-    <select id="getAllHr" resultType="com.gilxyj.gytvhrserver.bean.Hr">
-        select * from hr
+    <select id="getAllHr" resultMap="eagerLoadRoles">
+        select h.id as id ,h.name as name ,h.phone as phone ,h.telephone as telephone,h.address as address,h.enabled as enabled,h.username as username,h.userface as userface,h.remark as remark,
+        r.id as rid,r.name as rname,r.nameZh as rnameZh
+        from hr h left join hr_role hr2 on h.id=hr2.hrid
+        left join role r on hr2.rid=r.id
         <if test="currentId!=null">
-            WHERE id !=#{currentId}
+            WHERE h.id  !=#{currentId}
         </if>
     </select>
 </mapper>

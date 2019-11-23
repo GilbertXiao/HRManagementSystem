@@ -4,6 +4,7 @@ package com.gilxyj.gytvhrserver.service;
 import com.gilxyj.gytvhrserver.bean.Hr;
 import com.gilxyj.gytvhrserver.common.HrUtils;
 import com.gilxyj.gytvhrserver.mapper.HrMapper;
+import com.gilxyj.gytvhrserver.mapper.HrRoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,6 +22,9 @@ public class HrService implements UserDetailsService {
 
     @Autowired
     HrMapper hrMapper;
+
+    @Autowired
+    HrRoleMapper hrRoleMapper;
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
@@ -67,5 +71,14 @@ public class HrService implements UserDetailsService {
     }
     public List<Hr> getAllHr() {
         return hrMapper.getAllHr(null);
+    }
+
+    @Transactional
+    public int updateHrRoles(Integer hrId, Integer[] roleId) {
+        hrRoleMapper.deleteByHrid(hrId);
+        if(roleId==null||roleId.length==0){
+            return 0;
+        }
+        return hrRoleMapper.insertByHrIdAndRoleId(hrId,roleId);
     }
 }
