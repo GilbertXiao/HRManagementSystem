@@ -66,11 +66,11 @@ public class HrService implements UserDetailsService {
         return hrMapper.deleteHr(hrId);
     }
 
-    public List<Hr> getAllHrExceptAdmin() {
-        return hrMapper.getAllHr(HrUtils.getCurrentHr().getId());
+    public List<Hr> getAllHrExceptAdmin(String keyword) {
+        return hrMapper.getAllHr(HrUtils.getCurrentHr().getId(),keyword);
     }
     public List<Hr> getAllHr() {
-        return hrMapper.getAllHr(null);
+        return hrMapper.getAllHr(null, null);
     }
 
     @Transactional
@@ -81,4 +81,6 @@ public class HrService implements UserDetailsService {
         }
         return hrRoleMapper.insertByHrIdAndRoleId(hrId,roleId);
     }
+
+
 }

@@ -98,8 +98,15 @@
         r.id as rid,r.name as rname,r.nameZh as rnameZh
         from hr h left join hr_role hr2 on h.id=hr2.hrid
         left join role r on hr2.rid=r.id
-        <if test="currentId!=null">
-            WHERE h.id  !=#{currentId}
-        </if>
+        <where>
+            <if test="currentId!=null" >
+                h.id  !=#{currentId}
+            </if>
+            <if test="keyword != null and keyword != ''">
+                and h.name like concat('%',#{keyword},'%')
+            </if>
+        </where>
+
+
     </select>
 </mapper>

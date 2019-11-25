@@ -30,8 +30,8 @@ public class HrController {
 
 
     @GetMapping("/")
-    public List<Hr> getAllHrsExcudeLogin(){
-        return hrService.getAllHrExceptAdmin();
+    public List<Hr> getAllHrsExcudeLogin(String keyword){
+        return hrService.getAllHrExceptAdmin(keyword);
     }
 
     @GetMapping("/role")
@@ -54,5 +54,13 @@ public class HrController {
             return RespBean.ok("更新成功");
         }
         return RespBean.error("更新失败");
+    }
+
+    @DeleteMapping("/")
+    public RespBean deleteHr(Long id){
+        if(hrService.deleteHr(id)==1){
+            return RespBean.ok("删除成功");
+        }
+        return RespBean.error("删除失败");
     }
 }

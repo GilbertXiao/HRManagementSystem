@@ -31,6 +31,57 @@
     <result column="endContract" property="endContract" jdbcType="DATE" />
     <result column="workAge" property="workAge" jdbcType="INTEGER" />
   </resultMap>
+  <resultMap id="BaseResultAllMap" type="com.gilxyj.gytvhrserver.bean.Employee" extends="BaseResultMap">
+    <association property="department" javaType="com.gilxyj.gytvhrserver.bean.Department">
+      <id column="did" property="id" jdbcType="INTEGER" />
+      <result column="dname" property="name" jdbcType="VARCHAR" />
+      <result column="dparentId" property="parentId" jdbcType="INTEGER" />
+      <result column="ddepPath" property="depPath" jdbcType="VARCHAR" />
+      <result column="denabled" property="enabled" jdbcType="BIT" />
+      <result column="disParent" property="isParent" jdbcType="BIT" />
+    </association>
+    <association property="nation" javaType="com.gilxyj.gytvhrserver.bean.Nation">
+      <id column="nid" property="id"/>
+      <result column="nname" property="name"/>
+    </association>
+    <association property="position" javaType="com.gilxyj.gytvhrserver.bean.Position">
+
+      <id column="pid" property="id"/>
+      <result column="pname" property="name"/>
+      <result column="pcreate_date" property="createDate"/>
+      <result column="penabled" property="enabled"/>
+    </association>
+    <association property="politicsStatus" javaType="com.gilxyj.gytvhrserver.bean.PoliticsStatus">
+
+      <id column="polid" property="id"/>
+      <result column="polname" property="name"/>
+    </association>
+    <association property="jobLevel" javaType="com.gilxyj.gytvhrserver.bean.JobLevel">
+
+      <id column="id" property="id"/>
+      <result column="jname" property="name"/>
+      <result column="jtitle_level" property="titleLevel"/>
+      <result column="jcreate_date" property="createDate"/>
+      <result column="jenabled" property="enabled"/>
+    </association>
+    <association property="salary" javaType="com.gilxyj.gytvhrserver.bean.Salary">
+
+      <id column="sid" property="id"/>
+      <result column="sbonus" property="bonus"/>
+      <result column="slunch_salary" property="lunchSalary"/>
+      <result column="straffic_salary" property="trafficSalary"/>
+      <result column="sbasic_salary" property="basicSalary"/>
+      <result column="sall_salary" property="allSalary"/>
+      <result column="spension_base" property="pensionBase"/>
+      <result column="spension_per" property="pensionPer"/>
+      <result column="screate_date" property="createDate"/>
+      <result column="smedical_base" property="medicalBase"/>
+      <result column="smedical_per" property="medicalPer"/>
+      <result column="saccumulation_fund_base" property="accumulationFundBase"/>
+      <result column="saccumulation_fund_per" property="accumulationFundPer"/>
+      <result column="sname" property="name"/>
+    </association>
+  </resultMap>
   <sql id="Base_Column_List" >
     id, name, gender, birthday, idCard, wedlock, nationId, nativePlace, politicId, email,
     phone, address, departmentId, jobLevelId, posId, engageForm, tiptopDegree, specialty,
@@ -362,4 +413,11 @@
       workAge = #{workAge,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="getEmpByPage" resultMap="BaseResultAllMap">
+        select e.*,d.id as did,d.name as dname,d.parentId as dparentId,d.depPath as ddepPath,d.enabled as denabled,d.isParent as disParent,n.id as nid,n.name as nname,j.id as jid,j.name as jname,j.titleLevel as jtitleLevel,j.createDate as jcreateDate,j.enabled as jenabled,p.id as pid,p.name as pname,p.createDate as pcreateDate,p.enabled as penabled,pol.id as polid,pol.name as polname,s.id as sid,s.basicSalary as sbasicSalary,s.bonus as sbonus,s.lunchSalary as slunchSalary,s.trafficSalary as strafficSalary,s.allSalary as sallSalary,s.pensionBase as spensionBase,s.pensionPer as spensionPer,s.createDate as screateDate,s.medicalBase as smedicalBase,s.medicalPer as smedicalPer,s.accumulationFundBase as saccumulationFundBase,s.accumulationFundPer as saccumulationFundPer,s.name as sname from employee e left join department d on e.departmentId=d.id left join nation n on e.nationId=n.id left join joblevel j on e.jobLevelId=j.id left join position p on e.posId=p.id left join politicsstatus pol on e.politicId=pol.id left join empsalary es on e.id=es.eid left join salary s on es.sid=s.id
+        limit #{page},#{size}
+  </select>
+  <select id="getTotal" resultType="java.lang.Long">
+        select count(1) from employee;
+  </select>
 </mapper>
