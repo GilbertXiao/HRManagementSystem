@@ -1,6 +1,7 @@
 package com.gilxyj.gytvhrserver.bean;
 
-import java.util.Date;
+
+import java.time.LocalDate;
 
 public class Salary {
     private Integer id;
@@ -11,7 +12,7 @@ public class Salary {
     private Integer allSalary;
     private Integer pensionBase;
     private Float pensionPer;
-    private Date createDate;
+    private LocalDate createDate;
     private Integer medicalBase;
     private Float medicalPer;
     private Integer accumulationFundBase;
@@ -82,11 +83,11 @@ public class Salary {
         this.pensionPer = pensionPer;
     }
 
-    public Date getCreateDate() {
+    public LocalDate getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(LocalDate createDate) {
         this.createDate = createDate;
     }
 

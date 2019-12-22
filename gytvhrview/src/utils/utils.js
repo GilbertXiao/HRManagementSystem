@@ -11,6 +11,15 @@ export const isNotNullORBlank = (...args)=> {
   }
   return true;
 }
+export const isNotNullORBlankWithoutError = (...args)=> {
+  for (var i = 0; i < args.length; i++) {
+    var argument = args[i];
+    if (argument == null || argument == '' || argument == undefined) {
+      return false;
+    }
+  }
+  return true;
+}
 export const initMenu = (router, store)=> {
   if (store.state.routes.length > 0) {
     return;

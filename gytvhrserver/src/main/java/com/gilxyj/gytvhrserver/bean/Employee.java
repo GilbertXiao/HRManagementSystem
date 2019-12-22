@@ -1,42 +1,40 @@
 package com.gilxyj.gytvhrserver.bean;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Employee {
     private Long id;
     private String name;
     private String gender;
-    private Date birthday;
+    private LocalDate birthday;
     private String idCard;
     private String wedlock;
     private Long nationId;
-    private String nationName;
+
     private String nativePlace;
-    private String politicName;
+
     private Long politicId;
     private String email;
     private String phone;
     private String address;
     private Long departmentId;
-    private String departmentName;
+
     private Long jobLevelId;
-    private String jobLevelName;
+
     private Long posId;
-    private String posName;
+
     private String engageForm;
     private String tiptopDegree;
     private String specialty;
     private String school;
-    private Date beginDate;
+    private LocalDate beginDate;
     private String workState;
     private String workID;
     private Double contractTerm;
-    private Date conversionTime;
-    private Date notWorkDate;
-    private Date beginContract;
-    private Date endContract;
+    private LocalDate conversionTime;
+    private LocalDate notWorkDate;
+    private LocalDate beginContract;
+    private LocalDate endContract;
     private Integer workAge;
     private Department department;
     private Nation nation;
@@ -53,13 +51,7 @@ public class Employee {
         this.salary = salary;
     }
 
-    public String getPosName() {
-        return posName;
-    }
 
-    public void setPosName(String posName) {
-        this.posName = posName;
-    }
 
     public Department getDepartment() {
         return department;
@@ -125,11 +117,11 @@ public class Employee {
         this.gender = gender;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 
@@ -149,7 +141,7 @@ public class Employee {
         this.wedlock = wedlock;
     }
 
-    @JsonIgnore
+
     public Long getNationId() {
         return nationId;
     }
@@ -158,14 +150,8 @@ public class Employee {
         this.nationId = nationId;
     }
 
-    @JsonIgnore
-    public String getNationName() {
-        return nationName;
-    }
 
-    public void setNationName(String nationName) {
-        this.nationName = nationName;
-    }
+
 
     public String getNativePlace() {
         return nativePlace;
@@ -175,16 +161,8 @@ public class Employee {
         this.nativePlace = nativePlace;
     }
 
-    @JsonIgnore
-    public String getPoliticName() {
-        return politicName;
-    }
 
-    public void setPoliticName(String politicName) {
-        this.politicName = politicName;
-    }
 
-    @JsonIgnore
     public Long getPoliticId() {
         return politicId;
     }
@@ -217,7 +195,7 @@ public class Employee {
         this.address = address;
     }
 
-    @JsonIgnore
+
     public Long getDepartmentId() {
         return departmentId;
     }
@@ -226,16 +204,8 @@ public class Employee {
         this.departmentId = departmentId;
     }
 
-    @JsonIgnore
-    public String getDepartmentName() {
-        return departmentName;
-    }
 
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
-    }
 
-    @JsonIgnore
     public Long getJobLevelId() {
         return jobLevelId;
     }
@@ -244,16 +214,6 @@ public class Employee {
         this.jobLevelId = jobLevelId;
     }
 
-    @JsonIgnore
-    public String getJobLevelName() {
-        return jobLevelName;
-    }
-
-    public void setJobLevelName(String jobLevelName) {
-        this.jobLevelName = jobLevelName;
-    }
-
-    @JsonIgnore
     public Long getPosId() {
         return posId;
     }
@@ -294,11 +254,11 @@ public class Employee {
         this.school = school;
     }
 
-    public Date getBeginDate() {
+    public LocalDate getBeginDate() {
         return beginDate;
     }
 
-    public void setBeginDate(Date beginDate) {
+    public void setBeginDate(LocalDate beginDate) {
         this.beginDate = beginDate;
     }
 
@@ -326,35 +286,35 @@ public class Employee {
         this.contractTerm = contractTerm;
     }
 
-    public Date getConversionTime() {
+    public LocalDate getConversionTime() {
         return conversionTime;
     }
 
-    public void setConversionTime(Date conversionTime) {
+    public void setConversionTime(LocalDate conversionTime) {
         this.conversionTime = conversionTime;
     }
 
-    public Date getNotWorkDate() {
+    public LocalDate getNotWorkDate() {
         return notWorkDate;
     }
 
-    public void setNotWorkDate(Date notWorkDate) {
+    public void setNotWorkDate(LocalDate notWorkDate) {
         this.notWorkDate = notWorkDate;
     }
 
-    public Date getBeginContract() {
+    public LocalDate getBeginContract() {
         return beginContract;
     }
 
-    public void setBeginContract(Date beginContract) {
+    public void setBeginContract(LocalDate beginContract) {
         this.beginContract = beginContract;
     }
 
-    public Date getEndContract() {
+    public LocalDate getEndContract() {
         return endContract;
     }
 
-    public void setEndContract(Date endContract) {
+    public void setEndContract(LocalDate endContract) {
         this.endContract = endContract;
     }
 

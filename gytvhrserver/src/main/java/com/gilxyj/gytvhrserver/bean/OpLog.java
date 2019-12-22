@@ -1,11 +1,11 @@
 package com.gilxyj.gytvhrserver.bean;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class OpLog {
     private Integer id;
 
-    private Date adddate;
+    private LocalDate adddate;
 
     private String operate;
 
@@ -19,11 +19,11 @@ public class OpLog {
         this.id = id;
     }
 
-    public Date getAdddate() {
+    public LocalDate getAdddate() {
         return adddate;
     }
 
-    public void setAdddate(Date adddate) {
+    public void setAdddate(LocalDate adddate) {
         this.adddate = adddate;
     }
 

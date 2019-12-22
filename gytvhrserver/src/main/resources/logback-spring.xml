@@ -32,7 +32,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
         -->
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger - %msg%n</pattern>
-            <charset>UTF-8</charset>
+            <charset>utf-8</charset>
         </encoder>
     </appender>
     <!--<include resource="org/springframework/boot/logging/logback/base.xml"/>-->
@@ -88,7 +88,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%black(Console-) %red(%d{yyyy-MM-dd HH:mm:ss.SSS})  %green([%thread]) %highlight(%-5level) %boldMagenta(%logger) Line:%-3L - %cyan(%msg%n)</pattern>
-            <charset>GBK</charset>
+            <charset>utf-8</charset>
         </encoder>
     </appender>
     <!--
@@ -97,6 +97,9 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
 
     <logger name="com.alibaba" level="ERROR"/>
     <logger name="org" level="ERROR"/>
+
+
+
 
     <!--<contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">-->
     <!--<resetJUL>true</resetJUL>-->
@@ -118,7 +121,8 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     <springProfile name="dev,test">
         <logger name="org.hibernate.sql" level="DEBUG" />
         <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/>
-        <logger name="com.gilxyj.gytvhrserver.mapper" level="DEBUG" />
+        <!--打印mybatis的语句和结果，如果是DEBUG，就只打印语句-->
+        <logger name="com.gilxyj.gytvhrserver.mapper" level="TRACE" />
         <root level="DEBUG">
             <appender-ref ref="FILE"/>
             <appender-ref ref="CONSOLE"/>

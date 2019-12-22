@@ -1,13 +1,13 @@
 package com.gilxyj.gytvhrserver.bean;
 
-import java.util.Date;
 
+import java.time.LocalDate;
 
 public class MsgContent {
     private Long id;
     private String message;
     private String title;
-    private Date createDate;
+    private LocalDate createDate;
 
     public String getTitle() {
         return title;
@@ -33,11 +33,11 @@ public class MsgContent {
         this.message = message;
     }
 
-    public Date getCreateDate() {
+    public LocalDate getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(LocalDate createDate) {
         this.createDate = createDate;
     }
 }

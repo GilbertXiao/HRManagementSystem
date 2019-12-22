@@ -1,10 +1,11 @@
 <template>
     <div>
-        <div style="width: 600px;margin-top:20px;margin-bottom: 20px">
-            <el-input
-                    placeholder="请输入用户名搜索"
-            >
-            </el-input>
+        <div style="margin-top:20px;margin-bottom: 20px; display: flex; justify-content: center ">
+                <el-input
+                        placeholder="请输入用户名搜索" style="width: 400px;margin-right: 10px" prefix-icon="el-icon-search" v-model="keyword" @keydown.native.enter="doSearch"
+                >
+                </el-input>
+                <el-button icon="el-icon-search" type="primary" @click="doSearch">搜索</el-button>
         </div>
         <div style="display: flex;justify-content: space-around;flex-wrap: wrap;text-align: left">
 
@@ -12,7 +13,7 @@
                 <div slot="header">
                     <span>{{hr.name}}</span>
                     <el-button style="float: right; padding: 3px 0;color: #ff0317" icon="el-icon-delete"
-                               @click="deleteRole(r)"
+                               @click="deleteRole(hr)"
                                type="text">
                     </el-button>
                 </div>
@@ -73,20 +74,44 @@
                 hrs: [],
                 selRoles: [],
                 selRolesBak: [],
-                allRoles: []
+                allRoles: [],
+                keyword:''
             }
         },
         mounted() {
             this.initHrs();
             this.initAllRoles();
         },
+
         methods: {
+            deleteRole(hr){
+                this.$confirm('此操作将永久删除【' + hr.name + '】, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.deleteRequest('/system/hr/?id=' + hr.id).then(resp => {
+                            if (resp) {
+                                this.initHrs();
+                            }
+                        }
+                    );
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    });
+                });
+            },
             initHrs() {
-                this.getRequest('/system/hr/').then(resp => {
+                this.getRequest('/system/hr/?keyword='+this.keyword).then(resp => {
                     if (resp) {
                         this.hrs = resp;
                     }
                 })
+            },
+            doSearch(){
+                this.initHrs();
             },
             initAllRoles() {
                 this.getRequest('/system/hr/role').then(resp => {
@@ -159,7 +184,7 @@
 
 
     .box-card {
-        width: 350px;
+        width: 400px;
         margin-bottom: 20px
     }
 

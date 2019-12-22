@@ -5,9 +5,10 @@ import router from "./router";
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import store from "./store";
+import './utils/filter_utils'
 
 import {getRequest, postRequest, deleteRequest, putRequest, uploadFileRequest, postKeyValueRequest} from "./utils/api"
-import {initMenu,isNotNullORBlank} from "./utils/utils";
+import {initMenu,isNotNullORBlank,isNotNullORBlankWithoutError} from "./utils/utils";
 import 'font-awesome/css/font-awesome.min.css'
 
 
@@ -21,6 +22,7 @@ Vue.prototype.deleteRequest = deleteRequest;
 Vue.prototype.putRequest = putRequest;
 Vue.prototype.uploadFileRequest = uploadFileRequest;
 Vue.prototype.isNotNullORBlank = isNotNullORBlank;
+Vue.prototype.isNotNullORBlankWithoutError = isNotNullORBlankWithoutError;
 
 router.beforeEach((to, from, next) => {
     if (to.name == 'Login') {

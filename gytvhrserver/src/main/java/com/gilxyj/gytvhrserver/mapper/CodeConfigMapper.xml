@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gilxyj.gytvhrserver.mapper.CodeConfigMapper">
+  <resultMap id="BaseResultMap" type="com.gilxyj.gytvhrserver.bean.CodeConfig">
+    <!--@mbg.generated-->
+    <!--@Table code_config-->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="CONFIG_KEY" jdbcType="VARCHAR" property="configKey" />
+    <result column="CONFIG_VALUE" jdbcType="VARCHAR" property="configValue" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="EFFECTIVE_DATE" jdbcType="DATE" property="effectiveDate" />
+    <result column="EXPIRE_DATE" jdbcType="DATE" property="expireDate" />
+    <result column="AS_OF_DATE" jdbcType="DATE" property="asOfDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    ID, CONFIG_KEY, CONFIG_VALUE, REMARK, `NAME`, EFFECTIVE_DATE, EXPIRE_DATE, AS_OF_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from code_config
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from code_config
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gilxyj.gytvhrserver.bean.CodeConfig">
+    <!--@mbg.generated-->
+    insert into code_config (ID, CONFIG_KEY, CONFIG_VALUE,
+      REMARK, `NAME`, EFFECTIVE_DATE,
+      EXPIRE_DATE, AS_OF_DATE)
+    values (#{id,jdbcType=INTEGER}, #{configKey,jdbcType=VARCHAR}, #{configValue,jdbcType=VARCHAR},
+      #{remark,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{effectiveDate,jdbcType=DATE},
+      #{expireDate,jdbcType=DATE}, #{asOfDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gilxyj.gytvhrserver.bean.CodeConfig">
+    <!--@mbg.generated-->
+    insert into code_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="configKey != null">
+        CONFIG_KEY,
+      </if>
+      <if test="configValue != null">
+        CONFIG_VALUE,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="name != null">
+        `NAME`,
+      </if>
+      <if test="effectiveDate != null">
+        EFFECTIVE_DATE,
+      </if>
+      <if test="expireDate != null">
+        EXPIRE_DATE,
+      </if>
+      <if test="asOfDate != null">
+        AS_OF_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="configKey != null">
+        #{configKey,jdbcType=VARCHAR},
+      </if>
+      <if test="configValue != null">
+        #{configValue,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="effectiveDate != null">
+        #{effectiveDate,jdbcType=DATE},
+      </if>
+      <if test="expireDate != null">
+        #{expireDate,jdbcType=DATE},
+      </if>
+      <if test="asOfDate != null">
+        #{asOfDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gilxyj.gytvhrserver.bean.CodeConfig">
+    <!--@mbg.generated-->
+    update code_config
+    <set>
+      <if test="configKey != null">
+        CONFIG_KEY = #{configKey,jdbcType=VARCHAR},
+      </if>
+      <if test="configValue != null">
+        CONFIG_VALUE = #{configValue,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `NAME` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="effectiveDate != null">
+        EFFECTIVE_DATE = #{effectiveDate,jdbcType=DATE},
+      </if>
+      <if test="expireDate != null">
+        EXPIRE_DATE = #{expireDate,jdbcType=DATE},
+      </if>
+      <if test="asOfDate != null">
+        AS_OF_DATE = #{asOfDate,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gilxyj.gytvhrserver.bean.CodeConfig">
+    <!--@mbg.generated-->
+    update code_config
+    set CONFIG_KEY = #{configKey,jdbcType=VARCHAR},
+      CONFIG_VALUE = #{configValue,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      `NAME` = #{name,jdbcType=VARCHAR},
+      EFFECTIVE_DATE = #{effectiveDate,jdbcType=DATE},
+      EXPIRE_DATE = #{expireDate,jdbcType=DATE},
+      AS_OF_DATE = #{asOfDate,jdbcType=DATE}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+
+<!--auto generated by MybatisCodeHelper on 2019-12-23-->
+  <select id="getByConfigKey" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from code_config
+    where CONFIG_KEY=#{configKey,jdbcType=VARCHAR}
+  </select>
+
+
+</mapper>

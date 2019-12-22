@@ -1,13 +1,14 @@
 package com.gilxyj.gytvhrserver.bean;
 
-import java.util.Date;
+
+import java.time.LocalDate;
 
 public class EmployeeTrain {
     private Integer id;
 
     private Integer eid;
 
-    private Date traindate;
+    private LocalDate traindate;
 
     private String traincontent;
 
@@ -29,11 +30,11 @@ public class EmployeeTrain {
         this.eid = eid;
     }
 
-    public Date getTraindate() {
+    public LocalDate getTraindate() {
         return traindate;
     }
 
-    public void setTraindate(Date traindate) {
+    public void setTraindate(LocalDate traindate) {
         this.traindate = traindate;
     }
 

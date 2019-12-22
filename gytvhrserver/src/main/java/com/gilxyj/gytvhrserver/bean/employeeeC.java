@@ -1,13 +1,13 @@
 package com.gilxyj.gytvhrserver.bean;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class employeeeC {
     private Integer id;
 
     private Integer eid;
 
-    private Date ecdate;
+    private LocalDate ecdate;
 
     private String ecreason;
 
@@ -33,11 +33,11 @@ public class employeeeC {
         this.eid = eid;
     }
 
-    public Date getEcdate() {
+    public LocalDate getEcdate() {
         return ecdate;
     }
 
-    public void setEcdate(Date ecdate) {
+    public void setEcdate(LocalDate ecdate) {
         this.ecdate = ecdate;
     }
 

@@ -26,6 +26,11 @@ export default new Vuex.Store({
         },
         logout(state) {
             window.localStorage.removeItem('user');
+            window.localStorage.removeItem('jobLevels');
+            window.localStorage.removeItem('nations');
+            window.localStorage.removeItem('positions');
+            window.localStorage.removeItem('politicsStatus');
+            window.localStorage.removeItem('departments');
             state.routes = [];
         },
 

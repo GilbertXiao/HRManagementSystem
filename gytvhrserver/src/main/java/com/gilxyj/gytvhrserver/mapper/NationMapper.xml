@@ -9,7 +9,7 @@
     id, name
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from nation
     where id = #{id,jdbcType=INTEGER}
@@ -55,4 +55,10 @@
     set name = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+    <select id="getAllNations" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"></include>
+        from nation
+    </select>
+
 </mapper>

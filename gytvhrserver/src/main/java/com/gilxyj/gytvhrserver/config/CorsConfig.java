@@ -21,11 +21,13 @@ public class CorsConfig {
 		config.setAllowedOrigins(Arrays.asList("*"));
 		config.setAllowedHeaders(Arrays.asList("*"));
 		config.setAllowedMethods(Arrays.asList("*"));
-		config.setExposedHeaders(Arrays.asList("content-length"));
 		config.setMaxAge(3600L);
 		source.registerCorsConfiguration("/**", config);
 		FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
 		bean.setOrder(0);
+		bean.setUrlPatterns(Arrays.asList("/**"));
+		bean.setName("corsFilterRegistrationBean");
+		System.out.println("corsFilterRegistrationBean");
 		return bean;
 	}
 }

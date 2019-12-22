@@ -2,6 +2,8 @@ package com.gilxyj.gytvhrserver.mapper;
 
 import com.gilxyj.gytvhrserver.bean.PoliticsStatus;
 
+import java.util.List;
+
 public interface PoliticsStatusMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface PoliticsStatusMapper {
     int updateByPrimaryKeySelective(PoliticsStatus record);
 
     int updateByPrimaryKey(PoliticsStatus record);
+
+    List<PoliticsStatus> getAllPoliticsStatus();
 }

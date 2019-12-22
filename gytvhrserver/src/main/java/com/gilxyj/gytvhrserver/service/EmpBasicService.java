@@ -6,6 +6,8 @@ import com.gilxyj.gytvhrserver.mapper.EmployeeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -20,14 +22,16 @@ public class EmpBasicService {
     @Autowired
     EmployeeMapper employeeMapper;
 
-    public RespPageBean getEmpByPage(Integer page, Integer size) {
+    public RespPageBean getEmpByPage(Integer page, Integer size, Employee employee, LocalDate[] dateRange) {
 
         page = (page - 1) * size;
-        List<Employee> employeeList = employeeMapper.getEmpByPage(page, size);
-        Long total = employeeMapper.getTotal();
+        List<Employee> employeeList = employeeMapper.getEmpByPage(page, size,employee, dateRange);
+        Long total = employeeMapper.getTotal(employee, dateRange);
         RespPageBean respPageBean = new RespPageBean();
         respPageBean.setData(employeeList);
         respPageBean.setTotal(total);
         return respPageBean;
     }
+
+
 }

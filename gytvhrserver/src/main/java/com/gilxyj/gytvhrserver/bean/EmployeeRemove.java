@@ -1,6 +1,7 @@
 package com.gilxyj.gytvhrserver.bean;
 
-import java.util.Date;
+
+import java.time.LocalDate;
 
 public class EmployeeRemove {
     private Integer id;
@@ -11,7 +12,7 @@ public class EmployeeRemove {
 
     private Integer afterjobid;
 
-    private Date removedate;
+    private LocalDate removedate;
 
     private String reason;
 
@@ -49,11 +50,11 @@ public class EmployeeRemove {
         this.afterjobid = afterjobid;
     }
 
-    public Date getRemovedate() {
+    public LocalDate getRemovedate() {
         return removedate;
     }
 
-    public void setRemovedate(Date removedate) {
+    public void setRemovedate(LocalDate removedate) {
         this.removedate = removedate;
     }
 
