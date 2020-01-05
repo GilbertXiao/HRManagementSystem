@@ -6,16 +6,16 @@
             <el-button type="primary" size="small" icon="el-icon-plus" @click="addRole">添加角色</el-button>
         </div>
         <div class="panel">
-            <el-collapse v-model="activeName" accordion @change="change">
-                <el-collapse-item :title="r.nameZh" :name="r.id" v-for="(r,index) in roles" :key="index">
-                    <el-card class="box-card">
+            <el-collapse v-model="activeName" accordion @change="change" >
+                <el-collapse-item :title="r.nameZh" :name="r.id" v-for="(r,index) in roles" :key="index" >
+                    <el-card class="box-card" >
                         <div slot="header" class="clearfix">
                             <span>可访问的资源</span>
                             <el-button style="float: right; padding: 3px 0;color: #ff0317" icon="el-icon-delete" @click="deleteRole(r)"
                                        type="text">删除
                             </el-button>
                         </div>
-                        <div>
+                        <div >
                             <el-tree
                                     :data="menuTree"
                                     show-checkbox
@@ -25,7 +25,7 @@
                                     :props="defaultProps">
                             </el-tree>
                         </div>
-                        <div style="margin-top: 10px;display: flex;justify-content: flex-end">
+                        <div style="display: flex;justify-content: flex-end">
                             <el-button size="small" @click="cancelUpdate">取消修改</el-button>
                             <el-button size="small" type="primary" @click="updateMenuRole(index)">确认修改</el-button>
                         </div>
@@ -59,16 +59,20 @@
                 selectMenu: [],
 
 
+
+
             }
         },
         methods: {
             change(rid) {
+
                 if (rid) {
                     this.selectMenu = [];
                     this.menuTree = [];
                     Object.assign(this.menuTree, this.menuTreeBak);
                     this.initSelectedMenu(rid);
                 }
+
 
             },
             initRoles() {

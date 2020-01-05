@@ -13,9 +13,16 @@
     <name>gytmailserver</name>
     <description>Demo project for Spring Boot</description>
 
-
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.gilxyj</groupId>
+            <artifactId>gytvhr-model</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
