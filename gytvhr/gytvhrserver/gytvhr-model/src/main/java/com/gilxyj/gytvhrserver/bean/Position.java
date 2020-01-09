@@ -2,10 +2,11 @@ package com.gilxyj.gytvhrserver.bean;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 
-public class Position {
+public class Position  implements Serializable {
     private Long id;
     private String name;
     private Timestamp createDate;

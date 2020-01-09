@@ -120,7 +120,7 @@
         #{beginContract,jdbcType=DATE}, #{endContract,jdbcType=DATE}, #{workAge,jdbcType=INTEGER}
         )
     </insert>
-    <insert id="insertSelective" parameterType="com.gilxyj.gytvhrserver.bean.Employee">
+    <insert id="insertSelective" parameterType="com.gilxyj.gytvhrserver.bean.Employee" useGeneratedKeys="true" keyProperty="id">
         insert into employee
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -533,6 +533,27 @@
         </if>
 
     </insert>
+    <select id="getEmpById" resultMap="BaseResultAllMap">
+         select
+        e.id,e.name,e.gender,e.birthday,e.idCard,e.wedlock,e.nationId,e.nativePlace,e.politicId,e.email,e.phone,e.address,e.departmentId,e.jobLevelId,e.posId,e.engageForm,e.tiptopDegree,e.specialty,e.school,e.beginDate,e.workState,e.workID,e.contractTerm,e.conversionTime,e.notWorkDate,e.beginContract,e.endContract,e.workAge,
+        d.id as did,d.name as dname,d.parentId as dparentId,d.depPath as ddepPath,d.enabled as
+        denabled,d.isParent as disParent,n.id as nid,n.name as nname,j.id as jid,j.name as jname,j.titleLevel as
+        jtitleLevel,j.createDate as jcreateDate,j.enabled as jenabled,p.id as pid,p.name as pname,p.createDate as
+        pcreateDate,p.enabled as penabled,pol.id as polid,pol.name as polname,s.id as sid,s.basicSalary as
+        sbasicSalary,s.bonus as sbonus,s.lunchSalary as slunchSalary,s.trafficSalary as strafficSalary,s.allSalary as
+        sallSalary,s.pensionBase as spensionBase,s.pensionPer as spensionPer,s.createDate as screateDate,s.medicalBase
+        as smedicalBase,s.medicalPer as smedicalPer,s.accumulationFundBase as
+        saccumulationFundBase,s.accumulationFundPer as saccumulationFundPer,s.name as sname from employee e left join
+        department d on e.departmentId=d.id left join nation n on e.nationId=n.id left join joblevel j on
+        e.jobLevelId=j.id left join position p on e.posId=p.id left join politicsstatus pol on e.politicId=pol.id left
+        join empsalary es on e.id=es.eid left join salary s on es.sid=s.id
+        <where>
+            <if test="id != null">
+                e.id=#{id,jdbcType=BIGINT}
+            </if>
+        </where>
+
+    </select>
 
 
 </mapper>

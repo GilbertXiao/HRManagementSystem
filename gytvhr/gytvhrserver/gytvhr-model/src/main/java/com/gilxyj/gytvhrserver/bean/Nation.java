@@ -1,7 +1,9 @@
 package com.gilxyj.gytvhrserver.bean;
 
 
-public class Nation {
+import java.io.Serializable;
+
+public class Nation implements Serializable {
     private Long id;
     private String name;
 

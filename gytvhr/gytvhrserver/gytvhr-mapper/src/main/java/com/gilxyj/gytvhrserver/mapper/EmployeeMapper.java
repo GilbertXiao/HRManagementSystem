@@ -31,4 +31,5 @@ public interface EmployeeMapper<insertList> {
     Integer insertList(@Param("emps") List<Employee> employees);
 
 
+    Employee getEmpById(@Param("id") Long id);
 }

@@ -1,9 +1,10 @@
 package com.gilxyj.gytvhrserver.bean;
 
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Salary {
+public class Salary  implements Serializable {
     private Integer id;
     private Integer bonus;
     private Integer lunchSalary;

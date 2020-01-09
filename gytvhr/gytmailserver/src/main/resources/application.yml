@@ -1,13 +1,15 @@
 server:
   port: 8081
 spring:
+  profiles:
+    active: dev
   mail:
     host: smtp.qq.com
     protocol: smtp
     default-encoding: UTF-8
     password: hdyajocutmotbdig
     username: 852753482@qq.com
-    port: 465
+    port: 587
     properties:
       mail:
         stmp:

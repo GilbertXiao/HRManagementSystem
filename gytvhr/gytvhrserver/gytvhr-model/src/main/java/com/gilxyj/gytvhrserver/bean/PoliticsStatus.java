@@ -1,7 +1,9 @@
 package com.gilxyj.gytvhrserver.bean;
 
 
-public class PoliticsStatus {
+import java.io.Serializable;
+
+public class PoliticsStatus  implements Serializable {
     private Long id;
     private String name;
 
