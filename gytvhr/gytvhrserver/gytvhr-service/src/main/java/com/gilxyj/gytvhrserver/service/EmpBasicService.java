@@ -110,4 +110,7 @@ public class EmpBasicService {
 
     }
 
+    public Integer updateEmployeeSalaryById(Integer eid, Integer sid) {
+        return employeeMapper.updateEmployeeSalaryById(eid, sid);
+    }
 }

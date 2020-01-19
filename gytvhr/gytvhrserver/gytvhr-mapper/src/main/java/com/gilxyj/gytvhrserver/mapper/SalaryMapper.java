@@ -1,6 +1,9 @@
 package com.gilxyj.gytvhrserver.mapper;
 
 import com.gilxyj.gytvhrserver.bean.Salary;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface SalaryMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +17,9 @@ public interface SalaryMapper {
     int updateByPrimaryKeySelective(Salary record);
 
     int updateByPrimaryKey(Salary record);
+
+    List<Salary> getAllSalaries();
+
+    Integer deleteSalaryByIds(@Param("ids") Integer[] ids);
+
 }

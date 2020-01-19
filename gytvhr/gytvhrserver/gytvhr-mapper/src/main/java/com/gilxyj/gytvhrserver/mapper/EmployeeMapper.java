@@ -32,4 +32,7 @@ public interface EmployeeMapper<insertList> {
 
 
     Employee getEmpById(@Param("id") Long id);
+
+    Integer updateEmployeeSalaryById(@Param("eid") Integer eid, @Param("sid") Integer sid);
+
 }

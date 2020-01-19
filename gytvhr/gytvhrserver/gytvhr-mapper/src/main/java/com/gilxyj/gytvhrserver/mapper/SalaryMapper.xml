@@ -196,4 +196,18 @@
       name = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+    <select id="getAllSalaries" resultMap="BaseResultMap">
+       select
+       <include refid="Base_Column_List"></include>
+      from salary
+    </select>
+  <delete id="deleteSalaryByIds">
+     <if test="ids != null and ids.length != 0">
+       delete from salary
+       where id in
+       <foreach collection="ids" item="id" open="(" close=")" separator=",">
+         #{id,jdbcType=INTEGER}
+       </foreach>
+     </if>
+  </delete>
 </mapper>
