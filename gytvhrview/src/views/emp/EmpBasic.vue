@@ -795,57 +795,57 @@
                 this.inputDepName = '';
             },
             initBaseData() {
-                if (window.localStorage.getItem('jobLevels')) {
-                    this.jobLevels = JSON.parse(window.localStorage.getItem('jobLevels'));
+                if (window.sessionStorage.getItem('jobLevels')) {
+                    this.jobLevels = JSON.parse(window.sessionStorage.getItem('jobLevels'));
                 } else {
                     this.getRequest('/employee/basic/jobLevel').then(resp => {
                         if (resp) {
                             this.jobLevels = resp;
-                            window.localStorage.setItem('jobLevels', JSON.stringify(resp));
+                            window.sessionStorage.setItem('jobLevels', JSON.stringify(resp));
                         }
                     })
                 }
                 ;
-                if (window.localStorage.getItem('nations')) {
-                    this.nations = JSON.parse(window.localStorage.getItem('nations'));
+                if (window.sessionStorage.getItem('nations')) {
+                    this.nations = JSON.parse(window.sessionStorage.getItem('nations'));
                 } else {
                     this.getRequest('/employee/basic/nation').then(resp => {
                         if (resp) {
                             this.nations = resp;
-                            window.localStorage.setItem('nations', JSON.stringify(resp));
+                            window.sessionStorage.setItem('nations', JSON.stringify(resp));
                         }
                     })
                 }
                 ;
-                if (window.localStorage.getItem('positions')) {
-                    this.positions = JSON.parse(window.localStorage.getItem('positions'));
+                if (window.sessionStorage.getItem('positions')) {
+                    this.positions = JSON.parse(window.sessionStorage.getItem('positions'));
                 } else {
                     this.getRequest('/employee/basic/position').then(resp => {
                         if (resp) {
                             this.positions = resp;
-                            window.localStorage.setItem('positions', JSON.stringify(resp));
+                            window.sessionStorage.setItem('positions', JSON.stringify(resp));
                         }
                     })
                 }
                 ;
-                if (window.localStorage.getItem('politicsStatus')) {
-                    this.politicsStatus = JSON.parse(window.localStorage.getItem('politicsStatus'));
+                if (window.sessionStorage.getItem('politicsStatus')) {
+                    this.politicsStatus = JSON.parse(window.sessionStorage.getItem('politicsStatus'));
                 } else {
                     this.getRequest('/employee/basic/politicsStatus').then(resp => {
                         if (resp) {
                             this.politicsStatus = resp;
-                            window.localStorage.setItem('politicsStatus', JSON.stringify(resp));
+                            window.sessionStorage.setItem('politicsStatus', JSON.stringify(resp));
                         }
                     })
                 }
                 ;
-                if (window.localStorage.getItem('department')) {
-                    this.departments = JSON.parse(window.localStorage.getItem('department'));
+                if (window.sessionStorage.getItem('department')) {
+                    this.departments = JSON.parse(window.sessionStorage.getItem('department'));
                 } else {
                     this.getRequest('/employee/basic/department').then(resp => {
                         if (resp) {
                             this.departments = resp;
-                            window.localStorage.setItem('department', JSON.stringify(resp));
+                            window.sessionStorage.setItem('department', JSON.stringify(resp));
                         }
                     })
                 }

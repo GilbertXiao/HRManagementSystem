@@ -38,9 +38,10 @@ router.beforeEach((to, from, next) => {
         }
     } else {
         initMenu(router, store);
-        if(to.path=='/chat'){
+        /*if(to.path=='/chat'){
             store.commit("updateMsgList", []);
-        }
+        }*/
+        store.dispatch('connect');
         next();
     }
 })

@@ -33,7 +33,7 @@
             <el-table-column
                      align="center"
                     label="工资帐套"
-                    width="300">
+                    width="200">
                 <template slot-scope="scope">
                         <el-tooltip class="item" effect="dark"  placement="right" v-if="scope.row.salary">
                             <div slot="content" >
@@ -150,7 +150,7 @@
         },
         methods: {
             hideSalarySel(emp){
-                if(this.currentSid){
+                if(this.currentSid&&this.currentSid!=emp.salary.id){
                     this.putRequest('/salary/sobcfg/?eid='+emp.id+'&sid='+this.currentSid).then(resp=>{
                         if (resp) {
                             this.initEmps();

@@ -1,6 +1,7 @@
 package com.gilxyj.gytvhrserver;
 
-import com.gilxyj.gytvhrserver.bean.ChatResp;
+
+import com.gilxyj.gytvhrserver.bean.ChatMsg;
 import com.gilxyj.gytvhrserver.bean.CodeConfig;
 import com.gilxyj.gytvhrserver.service.CodeConfigService;
 import org.junit.Test;
@@ -32,12 +33,12 @@ public class GytvhrserverApplicationTests {
     @Test
     public void contextLoads() {
 
-        List<ChatResp> chatResps = new ArrayList<>();
+        List<ChatMsg> chatResps = new ArrayList<>();
         for(int i=0;i<100;i++){
-            chatResps.add(new ChatResp(String.valueOf(i),String.valueOf(i)));
+            chatResps.add(new ChatMsg(String.valueOf(i),String.valueOf(i)));
         }
         int i=0;
-        for (ChatResp chatResp : chatResps) {
+        for (ChatMsg chatResp : chatResps) {
             if(i==98){
                 chatResps.remove(chatResp);
                 System.out.println("here");
@@ -58,13 +59,13 @@ public class GytvhrserverApplicationTests {
     @Test
     public void contextLoads1() {
 
-        List<ChatResp> chatResps = new ArrayList<>();
+        List<ChatMsg> chatResps = new ArrayList<>();
         for(int i=0;i<100;i++){
-            chatResps.add(new ChatResp(String.valueOf(i),String.valueOf(i)));
+            chatResps.add(new ChatMsg(String.valueOf(i),String.valueOf(i)));
         }
 
         int i=0;
-        Iterator<ChatResp> iterator = chatResps.iterator();
+        Iterator<ChatMsg> iterator = chatResps.iterator();
 
         while (iterator.hasNext()){
 
@@ -82,9 +83,9 @@ public class GytvhrserverApplicationTests {
     @Test
     public void contextLoads2() {
 
-        List<ChatResp> chatResps = new ArrayList<>();
+        List<ChatMsg> chatResps = new ArrayList<>();
         for(int i=0;i<100;i++){
-            chatResps.add(new ChatResp(String.valueOf(i),String.valueOf(i)));
+            chatResps.add(new ChatMsg(String.valueOf(i),String.valueOf(i)));
         }
 
 
